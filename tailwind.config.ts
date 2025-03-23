@@ -70,10 +70,19 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // 🌊 Wave Motion Animation
+        "wave-motion": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        // 🌊 Custom wave animations
+        "wave-motion": "wave-motion 8s linear infinite",
+        "wave-motion-slow": "wave-motion 12s linear infinite",
+        "wave-motion-fast": "wave-motion 6s linear infinite",
       },
       typography: {
         DEFAULT: {

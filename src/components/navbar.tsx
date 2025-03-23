@@ -5,121 +5,87 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Book, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
-  const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
-
-  const isActive = (path: string) => {
-    return pathname === path
-  }
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const closeMenu = () => setIsMenuOpen(false)
+  const isActive = (path: string) => pathname === path
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-primary backdrop-blur supports-[backdrop-filter]:bg-primary/60">
+    <header className="sticky top-0 z-50 w-full border-b border-white bg-[#0f172a]/80 backdrop-blur-md font-pixel shadow-md">
       <div className="container flex h-16 items-center justify-between px-4 mx-auto">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-foreground" onClick={closeMenu}>
-            <Book className="h-5 w-5 text-accent" />
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-white text-lg tracking-wide hover:text-blue-400 transition duration-200"
+            onClick={closeMenu}
+          >
+            <Book className="h-5 w-5 text-blue-400" />
             <span>LumaSphere</span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <Link
-            href="/"
-            className={`text-sm font-medium transition-colors hover:text-accent ${isActive("/") ? "text-accent" : "text-muted"}`}
-          >
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <Link href="/" className={`${isActive("/") ? "text-blue-400" : "text-slate-400"} hover:text-blue-300 transition`}>
             Home
           </Link>
-          <Link
-            href="/knowledge"
-            className={`text-sm font-medium transition-colors hover:text-accent ${isActive("/knowledge") ? "text-accent" : "text-muted"}`}
-          >
+          <Link href="/knowledge" className={`${isActive("/knowledge") ? "text-blue-400" : "text-slate-400"} hover:text-blue-300 transition`}>
             Knowledge Base
           </Link>
-          <Link
-            href="/search"
-            className={`text-sm font-medium transition-colors hover:text-accent ${isActive("/search") ? "text-accent" : "text-muted"}`}
-          >
+          <Link href="/search" className={`${isActive("/search") ? "text-blue-400" : "text-slate-400"} hover:text-blue-300 transition`}>
             Search
           </Link>
-          <Link
-            href="/profile"
-            className={`text-sm font-medium transition-colors hover:text-accent ${isActive("/profile") ? "text-accent" : "text-muted"}`}
-          >
+          <Link href="/profile" className={`${isActive("/profile") ? "text-blue-400" : "text-slate-400"} hover:text-blue-300 transition`}>
             Profile
           </Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <ThemeToggle />
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/auth/login" className="text-foreground">Login</Link>
+            <Link href="/auth/login" className="text-white hover:text-blue-300">Login</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/auth/register" className="text-foreground">Register</Link>
+            <Link href="/auth/register" className="text-white">Register</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-4">
-          <ThemeToggle />
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
-            {isMenuOpen ? <X className="h-5 w-5 text-accent" /> : <Menu className="h-5 w-5 text-accent" />}
+            {isMenuOpen ? <X className="h-5 w-5 text-blue-400" /> : <Menu className="h-5 w-5 text-blue-400" />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-50 bg-primary border-t">
-          <nav className="flex flex-col p-6 gap-6">
-            <Link
-              href="/"
-              className={`text-lg font-medium ${isActive("/") ? "text-accent" : "text-muted"}`}
-              onClick={closeMenu}
-            >
+        <div className="md:hidden fixed inset-0 top-16 z-50 bg-[#0f172a] border-t border-blue-800 font-pixel">
+          <nav className="flex flex-col p-6 gap-6 text-white">
+            <Link href="/" className={`${isActive("/") ? "text-blue-400" : "text-slate-400"}`} onClick={closeMenu}>
               Home
             </Link>
-            <Link
-              href="/knowledge"
-              className={`text-lg font-medium ${isActive("/knowledge") ? "text-accent" : "text-muted"}`}
-              onClick={closeMenu}
-            >
+            <Link href="/knowledge" className={`${isActive("/knowledge") ? "text-blue-400" : "text-slate-400"}`} onClick={closeMenu}>
               Knowledge Base
             </Link>
-            <Link
-              href="/search"
-              className={`text-lg font-medium ${isActive("/search") ? "text-accent" : "text-muted"}`}
-              onClick={closeMenu}
-            >
+            <Link href="/search" className={`${isActive("/search") ? "text-blue-400" : "text-slate-400"}`} onClick={closeMenu}>
               Search
             </Link>
-            <Link
-              href="/profile"
-              className={`text-lg font-medium ${isActive("/profile") ? "text-accent" : "text-muted"}`}
-              onClick={closeMenu}
-            >
+            <Link href="/profile" className={`${isActive("/profile") ? "text-blue-400" : "text-slate-400"}`} onClick={closeMenu}>
               Profile
             </Link>
+
             <div className="flex flex-col gap-4 mt-4">
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/auth/login" onClick={closeMenu} className="text-foreground">
+                <Link href="/auth/login" onClick={closeMenu} className="text-white hover:text-blue-300">
                   Login
                 </Link>
               </Button>
               <Button className="w-full" asChild>
-                <Link href="/auth/register" onClick={closeMenu} className="text-foreground">
+                <Link href="/auth/register" onClick={closeMenu} className="text-white">
                   Register
                 </Link>
               </Button>
