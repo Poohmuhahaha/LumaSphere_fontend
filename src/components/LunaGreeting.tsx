@@ -29,13 +29,13 @@ export default function LunaGreeting({ articles }: { articles: any[] }) {
 
       {/* กล่องคำพูด */}
       <div className="flex-1">
-        <p className="text-[#D0BCFF] text-sm mb-1">🌙 ลูน่ากล่าวว่า…</p>
+        <p className="text-[#D0BCFF] text-sm mb-1">🌙 Luna says...</p>
         <div className="bg-[#2A2A4A] p-4 rounded-xl text-white text-base leading-relaxed shadow-inner">
-          วันนี้เรามาส่องแสงแห่งปัญญาไปด้วยกันนะคะ ✨
+        Today, let's shine the light of wisdom together. ✨
 
           {recommended && (
             <div className="mt-3 text-sm text-[#8AB4F8]">
-              ลูน่าแนะนำบทความนี้ให้คุณ:{" "}
+              Luna recommends this article for you:{" "}
               <Link
                 href={`/article/${recommended.id}`}
                 className="underline hover:text-[#A8CFFF] inline-flex items-center"

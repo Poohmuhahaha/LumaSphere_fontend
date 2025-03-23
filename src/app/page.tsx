@@ -1,5 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+// ใช้ dynamic import เพื่อให้โหลดเฉพาะ client
+const RotatingMoon = dynamic(() => import("@/components/RotatingMoon"), {
+  ssr: false,
+});
+
+
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -13,7 +22,6 @@ import {
 } from "@/components/ui/card";
 
 import LunaGreeting from "@/components/LunaGreeting";
-import RotatingMoon from "@/components/RotatingMoon";
 import TwinklingStars from "@/components/TwinklingStars";
 
 async function fetchArticlesFromAPI() {

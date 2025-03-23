@@ -15,7 +15,7 @@ export function Navbar() {
   const isActive = (path: string) => pathname === path
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white bg-[#0f172a]/80 backdrop-blur-md font-pixel shadow-md">
+    <header className="sticky top-0 z-50 w-full border-b border-black bg-[#0f172a]/80 backdrop-blur-md font-pixel shadow-md">
       <div className="container flex h-16 items-center justify-between px-4 mx-auto">
         <div className="flex items-center gap-2">
           <Link
