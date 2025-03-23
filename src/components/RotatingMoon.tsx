@@ -52,7 +52,7 @@ const Moon = () => (
   </motion.div>
 );
 
-const RotatingMoon = () => {
+function RotatingMoon() {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
