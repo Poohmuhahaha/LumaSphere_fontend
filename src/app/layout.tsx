@@ -1,4 +1,3 @@
-"use client"
 
 import * as React from "react"
 import { Geist, Geist_Mono } from "next/font/google"
@@ -27,9 +26,9 @@ const geistMono = Geist_Mono({
 // RootLayout component to define the main structure of the application
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
