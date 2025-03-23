@@ -31,7 +31,7 @@ export default function LunaGreeting({ articles }: { articles: any[] }) {
       <div className="flex-1">
         <p className="text-[#D0BCFF] text-sm mb-1">🌙 Luna says...</p>
         <div className="bg-[#2A2A4A] p-4 rounded-xl text-white text-base leading-relaxed shadow-inner">
-        Today, let's shine the light of wisdom together. ✨
+        Today, let&apos;s shine the light of wisdom together. ✨
 
           {recommended && (
             <div className="mt-3 text-sm text-[#8AB4F8]">

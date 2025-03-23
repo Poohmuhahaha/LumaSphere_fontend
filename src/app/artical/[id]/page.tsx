@@ -790,7 +790,7 @@ export default function ArticlePage() {
     return (
       <div className="container mx-auto py-16 px-4 text-center">
         <h1 className="text-3xl font-bold mb-4">Article Not Found</h1>
-        <p className="text-muted-foreground mb-8">The article you're looking for doesn't exist or has been removed.</p>
+        <p className="text-gray-500 mb-8">The second set of points, &apos;What&apos;s next&apos;, provides a glimpse into Luna&apos;s future aspirations.</p>
         <Button asChild>
           <Link href="/knowledge">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Knowledge Base

@@ -67,7 +67,7 @@ export default function Home() {
             Welcome to LumaSphere
           </h1>
           <p className="text-xl md:text-2xl text-[#A6A6C6] mb-8 italic">
-            "Illuminating Minds, Empowering Connections."
+            "Illuminating Minds, Empowering Connections.
           </p>
           <Button
             size="lg"
