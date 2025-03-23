@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import lunaPFP from "@/assets/luna-pfp.png";
 
 // Component for displaying the recommended article
 const RecommendedArticle = ({ recommended }: { recommended: any }) => (
@@ -33,11 +34,10 @@ export default function LunaGreeting({ articles }: { articles: any[] }) {
     <div className="flex items-start gap-4 bg-[#1B1B3A] p-6 rounded-2xl shadow-md mb-12 max-w-3xl mx-auto">
       {/* Avatar ลูน่า */}
       <Image
-        src="/lunaPFP.png"
+        src={lunaPFP}
         alt="Luna Avatar"
         width={128}
         height={128}
-        unoptimized // ❗ ใช้ภาพต้นฉบับ 631x631 แบบคมชัด
         className="rounded-full border border-[#8AB4F8] shadow-lg transition-all duration-300 ease-in-out hover:scale-105"
       />
 
