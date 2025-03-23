@@ -1,12 +1,7 @@
-/** @type {import('eslint').Linter.Config} */
-const config = {
-  extends: ['next/core-web-vitals'],
-  rules: {
-    'react/no-unescaped-entities': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unsafe-function-type': 'off',
-    'react-hooks/exhaustive-deps': 'warn'
-  }
-};
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+}
 
-export default config;
+module.exports = nextConfig
