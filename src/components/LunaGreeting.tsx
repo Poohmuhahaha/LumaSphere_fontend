@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import lunaPFP from "/LunaPFP.png";
+import lunaPFP from "../../public/LunaPFP.png";
 
 // Component for displaying the recommended article
 const RecommendedArticle = ({ recommended }: { recommended: any }) => (
