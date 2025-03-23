@@ -1,26 +1,84 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@import "tw-animate-css";
 
 @media (prefers-color-scheme: dark) {
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 10% 11%; /* #12171D */
+    --foreground: 210 40% 90%; /* #D6E5F2 */
+    --primary: 210 20% 25%; /* #1E2A38 */
+    --secondary: 210 20% 30%; /* #2A3D4D */
+    --accent: 180 50% 70%; /* #77C9D4 */
+    --muted: 210 10% 50%; /* #7A8A99 */
+    --border: 210 10% 30%; /* #4A5A6A */
+    --input: 210 10% 30%; /* #4A5A6A */
+    --ring: 210 20% 25%; /* #1E2A38 */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 11%; /* #12171D */
+    --foreground: 210 40% 90%; /* #D6E5F2 */
+    --primary: 210 20% 25%; /* #1E2A38 */
+    --secondary: 210 20% 30%; /* #2A3D4D */
+    --accent: 180 50% 70%; /* #77C9D4 */
+    --muted: 210 10% 50%; /* #7A8A99 */
+    --border: 210 10% 30%; /* #4A5A6A */
+    --input: 210 10% 30%; /* #4A5A6A */
+    --ring: 210 20% 25%; /* #1E2A38 */
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.prose {
+  max-width: none;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul {
+  margin-bottom: 1rem;
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  margin-bottom: 1rem;
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.25rem;
+}
+
+.prose strong {
+  font-weight: bold;
 }
