@@ -16,9 +16,7 @@ import LunaGreeting from "@/components/LunaGreeting";
 import TwinklingStars from "@/components/TwinklingStars";
 
 // Dynamically import RotatingMoon component
-const RotatingMoon = dynamic(() => import("@/components/RotatingMoon"), {
-  ssr: false,
-});
+import RotatingMoon from "@/components/RotatingMoon";
 
 async function fetchArticlesFromAPI() {
   try {
