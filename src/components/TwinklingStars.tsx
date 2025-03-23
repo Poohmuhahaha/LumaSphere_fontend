@@ -5,11 +5,11 @@ export default function TwinklingStars() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // รอให้โหลดบน client แล้วค่อย render ดาว
+    // Wait for client-side rendering before displaying stars
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // ❌ ไม่ให้ SSR render อะไรเลย
+  if (!mounted) return null; // Prevent SSR rendering
 
   const stars = Array.from({ length: 60 }, (_, i) => {
     const size = Math.random() * 2 + 1;
@@ -33,9 +33,5 @@ export default function TwinklingStars() {
     );
   });
 
-  return (
-    <div className="absolute inset-0 z-0 pointer-events-none">
-      {stars}
-    </div>
-  );
+  return <div className="absolute inset-0 z-0 pointer-events-none">{stars}</div>;
 }

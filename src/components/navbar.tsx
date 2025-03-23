@@ -17,6 +17,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-black bg-[#0f172a]/80 backdrop-blur-md font-pixel shadow-md">
       <div className="container flex h-16 items-center justify-between px-4 mx-auto">
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <Link
             href="/"
@@ -44,10 +45,9 @@ export function Navbar() {
           </Link>
         </nav>
 
+        {/* Desktop Auth Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/auth/login" className="text-white hover:text-blue-300">Login</Link>
-          </Button>
+          <Button variant="ghost" size="sm" asChild></Button>
           <Button size="sm" asChild>
             <Link href="/auth/register" className="text-white">Register</Link>
           </Button>

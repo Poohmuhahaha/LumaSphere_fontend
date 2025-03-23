@@ -5,9 +5,9 @@
   "scripts": {
     "start": "next start",
     "lint": "next lint",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "preview": "next preview"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.3",

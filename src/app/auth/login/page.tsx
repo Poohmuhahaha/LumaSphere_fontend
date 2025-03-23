@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -32,20 +31,10 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      // In a real app, you would make an API call
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ username, password }),
-      // });
-
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // Simulate successful login (in a real app, check response status)
-      // if (!response.ok) throw new Error('Invalid credentials');
-
-      // For demo purposes, we'll just redirect if username is "demo" and password is "password"
+      // Simulate successful login
       if (username === "demo" && password === "password") {
         router.push("/profile")
       } else {
@@ -127,8 +116,8 @@ export default function LoginPage() {
             </Link>
           </div>
           <div className="text-sm text-center text-muted-foreground">
-          <p className="text-center text-sm text-muted-foreground">Don&apos;t have an account?</p>
-           <Link href="/auth/register" className="font-medium hover:text-primary">
+            <p className="text-center text-sm text-muted-foreground">Don&apos;t have an account?</p>
+            <Link href="/auth/register" className="font-medium hover:text-primary">
               Register
             </Link>
           </div>
@@ -137,4 +126,3 @@ export default function LoginPage() {
     </div>
   )
 }
-

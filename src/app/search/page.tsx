@@ -81,25 +81,22 @@ const ALL_ARTICLES = [
   },
 ]
 
+const debounce = (func: Function, delay: number) => {
+  let timeoutId: NodeJS.Timeout
+  return (...args: any[]) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => func(...args), delay)
+  }
+}
+
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<typeof ALL_ARTICLES>([])
   const [isSearching, setIsSearching] = useState(false)
 
-  // Debounce search function
-  const debounce = (func: Function, delay: number) => {
-    let timeoutId: NodeJS.Timeout
-    return (...args: any[]) => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => func(...args), delay)
-    }
-  }
-
-  // Search function
   const performSearch = useCallback((query: string) => {
     setIsSearching(true)
 
-    // Simulate API call
     setTimeout(() => {
       if (!query.trim()) {
         setSearchResults([])
@@ -119,10 +116,8 @@ export default function SearchPage() {
     }, 300)
   }, [])
 
-  // Debounced search
   const debouncedSearch = useCallback(debounce(performSearch, 300), [performSearch])
 
-  // Update search results when query changes
   useEffect(() => {
     debouncedSearch(searchQuery)
   }, [searchQuery, debouncedSearch])
@@ -144,57 +139,74 @@ export default function SearchPage() {
         </div>
 
         {isSearching ? (
-          <div className="space-y-4">
-            {[...Array(3)].map((_, i) => (
-              <Card key={i} className="animate-pulse">
-                <CardHeader>
-                  <div className="h-7 bg-muted rounded w-3/4"></div>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-4 bg-muted rounded mb-2"></div>
-                  <div className="h-4 bg-muted rounded mb-2 w-5/6"></div>
-                  <div className="h-4 bg-muted rounded w-4/6"></div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <LoadingSkeleton />
         ) : searchQuery.trim() ? (
-          <>
-            <p className="text-muted-foreground mb-4">
-              {searchResults.length === 0
-                ? "No results found"
-                : `Found ${searchResults.length} result${searchResults.length === 1 ? "" : "s"}`}
-            </p>
-
-            <div className="space-y-4">
-              {searchResults.map((article) => (
-                <Card key={article.id} className="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle>{article.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{article.description}</p>
-                  </CardContent>
-                  <CardFooter className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">{article.category}</span>
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link href={`/article/${article.id}`}>
-                        Read More <ArrowRight className="ml-1 h-3 w-3" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </>
+          <SearchResults searchResults={searchResults} />
         ) : (
-          <div className="text-center py-12">
-            <h3 className="text-lg font-medium mb-2">Start searching</h3>
-            <p className="text-muted-foreground">Type in the search box to find articles in our knowledge base.</p>
-          </div>
+          <StartSearchingMessage />
         )}
       </div>
     </div>
   )
 }
 
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-4">
+      {[...Array(3)].map((_, i) => (
+        <Card key={i} className="animate-pulse">
+          <CardHeader>
+            <div className="h-7 bg-muted rounded w-3/4"></div>
+          </CardHeader>
+          <CardContent>
+            <div className="h-4 bg-muted rounded mb-2"></div>
+            <div className="h-4 bg-muted rounded mb-2 w-5/6"></div>
+            <div className="h-4 bg-muted rounded w-4/6"></div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
+function SearchResults({ searchResults }: { searchResults: typeof ALL_ARTICLES }) {
+  return (
+    <>
+      <p className="text-muted-foreground mb-4">
+        {searchResults.length === 0
+          ? "No results found"
+          : `Found ${searchResults.length} result${searchResults.length === 1 ? "" : "s"}`}
+      </p>
+
+      <div className="space-y-4">
+        {searchResults.map((article) => (
+          <Card key={article.id} className="hover:shadow-md transition-shadow">
+            <CardHeader>
+              <CardTitle>{article.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">{article.description}</p>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">{article.category}</span>
+              <Button variant="ghost" size="sm" asChild>
+                <Link href={`/article/${article.id}`}>
+                  Read More <ArrowRight className="ml-1 h-3 w-3" />
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </>
+  )
+}
+
+function StartSearchingMessage() {
+  return (
+    <div className="text-center py-12">
+      <h3 className="text-lg font-medium mb-2">Start searching</h3>
+      <p className="text-muted-foreground">Type in the search box to find articles in our knowledge base.</p>
+    </div>
+  )
+}

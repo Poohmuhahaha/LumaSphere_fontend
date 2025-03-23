@@ -1,8 +1,6 @@
 "use client"
 
 import type React from "react"
-
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -16,6 +14,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 export default function RegisterPage() {
   const router = useRouter()
+
+  // State variables
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -27,11 +27,13 @@ export default function RegisterPage() {
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
@@ -75,19 +77,10 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      // In a real app, you would make an API call
-      // const response = await fetch('/api/auth/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
       // Simulate successful registration
-      // if (!response.ok) throw new Error('Registration failed');
-
       router.push("/profile")
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during registration.")
@@ -224,4 +217,3 @@ export default function RegisterPage() {
     </div>
   )
 }
-
